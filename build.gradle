@@ -5,6 +5,7 @@ plugins {
 }
 
 group = 'com.cloudinary'
+//软件应用版本
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -23,11 +24,11 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-ldap'
+  implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
   implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
   implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-  implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
   implementation 'org.springframework.boot:spring-boot-starter-security'
-  implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
+  testImplementation 'org.springframework.security:spring-security-test'
   compileOnly 'org.projectlombok:lombok'
   runtimeOnly 'com.mysql:mysql-connector-j'
   annotationProcessor 'org.projectlombok:lombok'
