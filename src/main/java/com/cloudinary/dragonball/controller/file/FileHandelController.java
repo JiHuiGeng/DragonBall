@@ -1,4 +1,4 @@
-package com.cloudinary.dragonball.controller;
+package com.cloudinary.dragonball.controller.file;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
+ * 文件处理
+ *
  * @Author: gengjihui
  * @Date: 2024/5/16 16:55
  * @Description:
@@ -25,7 +26,6 @@ public class FileHandelController {
     // 创建文件内容，这里使用字符串作为例子
     String content = "Hello, this is the file content!";
     InputStream inputStream = new ByteArrayInputStream(content.getBytes());
-
     // 创建InputStreamResource包装InputStream
     InputStreamResource resource = new InputStreamResource(inputStream);
 
