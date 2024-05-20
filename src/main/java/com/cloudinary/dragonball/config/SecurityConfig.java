@@ -5,12 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -50,15 +46,14 @@ public class SecurityConfig {
 //    //在spring security 5.8版本之后,antMatchers,mvcMatchers,regexMatchers弃用
 //    return web -> web.ignoring().requestMatchers("/hello");
 //  }
-
   @Bean
   protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http
-      //禁用basi明文认证
-//      .httpBasic(AbstractHttpConfigurer::disable)
+      //禁用basic明文认证
+      .httpBasic(AbstractHttpConfigurer::disable)
       //前后端分离架构,不需要csrf保护
-//      .csrf(AbstractHttpConfigurer::disable)
+      .csrf(AbstractHttpConfigurer::disable)
       //禁用默认登陆页
 //      .formLogin(AbstractHttpConfigurer::disable)
       //禁用默认登出页面
@@ -66,7 +61,7 @@ public class SecurityConfig {
       //设置异常的EntryPoint,如果不设置,默认使用的是http403ForbiddenEntryPoni
 //      .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(invalidAuthenticationEntryPoint))
       //前后端分离是无状态的,不需要session了,直接禁用
-//      .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+      .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authorizeHttpRequests(authorizeHttpRequest -> authorizeHttpRequest
         //允许所有的OPTIONS请求
         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
